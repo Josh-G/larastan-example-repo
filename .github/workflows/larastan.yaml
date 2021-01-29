@@ -1,0 +1,14 @@
+name: Run Larastan
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_INTERACTIVE_NO_CLI: "true"
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run Larastan
+      run: docker-compose run -T app vendor/bin/phpstan analyse --memory-limit 2G
